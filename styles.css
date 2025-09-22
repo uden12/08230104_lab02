@@ -290,3 +290,183 @@ footer {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ===== Media Queries ===== */
+
+/* Mobile Devices (up to 600px) */
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+  .section-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .section-img {
+    max-width: 200px;
+    margin: auto;
+  }
+  .card-list {
+    grid-template-columns: 1fr;
+  }
+  form {
+    width: 100%;
+  }
+}
+
+/* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .nav-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+  .section-content {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .section-img {
+    max-width: 250px;
+  }
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Laptops / Small Desktops (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+  .section-content {
+    flex-direction: row;
+  }
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Desktops (1441px and above) */
+@media (min-width: 1441px) {
+  .hero h2 {
+    font-size: 3rem;
+  }
+  .hero p {
+    font-size: 1.5rem;
+  }
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+  }
+  .card-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/* ===== Horizontal Scroll Container ===== */
+.horizontal-sections {
+  display: flex;
+  flex-direction: row;
+  width: max-content; /* Width based on content */
+  height: 100vh;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* ===== Each Section Styling ===== */
+.horizontal-sections .section {
+  min-width: 100vw; /* Each section fills the viewport */
+  height: 100vh;
+  scroll-snap-align: start;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Add hover or fade-in animation for each section */
+.horizontal-sections .section-content {
+  animation: fadeInHorizontal 1.2s ease-in-out;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeInHorizontal {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== Scrollbar Styling ===== */
+.horizontal-sections::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-sections::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.horizontal-sections::-webkit-scrollbar-thumb {
+  background: #ff7eb9;
+  border-radius: 10px;
+}
+
+/* ===== Responsive Media Queries ===== */
+@media (max-width: 768px) {
+  .horizontal-sections .section {
+    padding: 30px;
+  }
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .hero h2 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+}
