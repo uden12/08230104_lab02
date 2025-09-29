@@ -9,6 +9,7 @@
 body {
   line-height: 1.6;
   color: #fff;
+  background: #0f2027;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
@@ -63,19 +64,21 @@ nav ul li a:focus {
   color: #00c6ff;
 }
 
-/* ===== Section Visibility ===== */
+/* ===== Section Visibility Control ===== */
 .section {
-  display: none;
-  padding: 120px 20px 80px 20px;
-  min-height: calc(100vh - 100px);
+  display: none; /* All hidden by default */
+  padding: 80px 0;
+  min-height: 100vh;
   text-align: center;
 }
 
+/* Show only targeted section */
 .section:target {
   display: block;
   animation: fadeIn 0.8s ease-in-out;
 }
 
+/* Show Home ONLY when no hash (#) in URL */
 body:not(:has(:target)) #home {
   display: block;
 }
@@ -94,13 +97,25 @@ body:not(:has(:target)) #home {
   line-height: 1.7;
 }
 
-/* ===== Home Section ===== */
+/* ===== Home Section (Hero) ===== */
 #home img.profile-pic {
   width: 180px;
   height: 180px;
   border-radius: 50%;
   margin-bottom: 20px;
   border: 4px solid #00c6ff;
+}
+
+#home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+#home h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: #ccc;
 }
 
 /* ===== About Section ===== */
@@ -111,17 +126,17 @@ body:not(:has(:target)) #home {
   border: 3px solid #00c6ff;
   margin-bottom: 20px;
   object-fit: cover;
-  box-shadow: 0 8px 20px rgba(0,198,255,0.4);
+  box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #about .section-img:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 25px rgba(0,198,255,0.6);
+  box-shadow: 0 12px 25px rgba(0, 198, 255, 0.6);
 }
 
-/* ===== Cards ===== */
-.card-list {
+/* ===== Skills Section ===== */
+#skills .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
@@ -197,7 +212,7 @@ body:not(:has(:target)) #home {
 footer {
   text-align: center;
   padding: 20px 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   font-size: 0.9rem;
 }
 
@@ -207,16 +222,26 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* ===== Fix for Mobile Section Visibility ===== */
+html {
+  scroll-padding-top: 70px; /* height of fixed header */
+}
 
+/* ===== Responsive Adjustments ===== */
+@media screen and (max-width: 768px) {
   nav ul {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section {
+    padding: 100px 20px 50px 20px;
   }
 
   #home img.profile-pic {
@@ -225,16 +250,11 @@ footer {
   }
 
   #about .section-img {
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
   }
 
-  .section {
-    padding: 100px 10px 60px 10px;
-    min-height: auto;
-  }
-
-  .card-list {
-    grid-template-columns: 1fr;
+  .card img {
+    height: 120px;
   }
 }
