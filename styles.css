@@ -1,3 +1,4 @@
+```css
 /* ===== General Reset ===== */
 * {
   margin: 0;
@@ -9,7 +10,8 @@
 body {
   line-height: 1.6;
   color: #fff;
-  background: #0f2027; /* dark base for tech look */
+  background: #0f2027;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
 /* ===== Container ===== */
@@ -19,14 +21,15 @@ body {
   max-width: 1200px;
 }
 
-/* ===== Navigation ===== */
+/* ===== Header & Navigation ===== */
 header {
-  background: rgba(17,17,17,0.9);
+  background: rgba(0, 0, 0, 0.8);
   padding: 15px 0;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  backdrop-filter: blur(5px);
 }
 
 .nav-container {
@@ -36,182 +39,108 @@ header {
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #ff7eb9;
+  color: #00c6ff;
 }
 
-.nav-links {
-  list-style: none;
+nav ul {
   display: flex;
-  gap: 25px;
+  list-style: none;
 }
 
-.nav-links a {
+nav ul li {
+  margin-left: 25px;
+}
+
+nav ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.nav-links a:hover {
-  color: #ff7eb9;
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #00c6ff;
 }
 
-/* ===== Hero Section ===== */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  background-image: 
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05), transparent 20%),
-              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 20%);
-  animation: moveLines 15s linear infinite;
-}
-
-@keyframes moveLines {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-50px, 50px); }
-  100% { transform: translate(0, 0); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-.hero h2 {
-  font-size: 2.5rem;
-  margin: 15px 0;
-}
-
-.hero h2 span {
-  color: #111;
-  background: #ff7eb9;
-  padding: 0 10px;
-  border-radius: 8px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #ff7eb9;
-}
-
-.btn {
-  background: #ff7eb9;
-  color: #111;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s, color 0.3s;
-}
-
-.btn:hover {
-  background: #111;
-  color: #ff7eb9;
-}
-
-/* ===== Sections ===== */
+/* ===== Section Visibility Control ===== */
 .section {
-  padding: 70px 0;
-  position: relative;
-  z-index: 1;
-}
-
-.section h2 {
+  display: none; /* All hidden by default */
+  padding: 80px 0;
+  min-height: 100vh;
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  position: relative;
 }
 
-.section h2::after {
-  content: "";
+/* Show only targeted section */
+.section:target {
   display: block;
-  width: 80px;
-  height: 4px;
-  background: #ff7eb9;
-  margin: 10px auto 0;
-  border-radius: 5px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-.bg-light {
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(10px);
+/* Show Home ONLY when no hash (#) in URL */
+body:not(:has(:target)) #home {
+  display: block;
 }
 
-/* Subtle tech pattern for all sections */
-.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 0;
+/* ===== Section Headings ===== */
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00c6ff;
 }
 
-/* ===== Section Content ===== */
-.section-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 30px;
-  position: relative;
-  z-index: 1;
+.section p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-.section-img {
-  flex: 1;
-  max-width: 300px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+/* ===== Home Section (Hero) ===== */
+#home img.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 4px solid #00c6ff;
 }
 
-.section-content p {
-  flex: 2;
-  font-size: 1.1rem;
+#home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-/* ===== Cards ===== */
-.card-list {
+#home h3 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+/* ===== About Section (refined photo) ===== */
+#about .section-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 15px;          /* softer shape */
+  border: 3px solid #00c6ff;
+  margin-bottom: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 198, 255, 0.4); /* glow */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#about .section-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 198, 255, 0.6);
+}
+
+/* ===== Skills Section ===== */
+#skills .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
-  position: relative;
-  z-index: 1;
 }
 
 .card {
@@ -222,10 +151,12 @@ header {
   transition: transform 0.3s, box-shadow 0.3s;
   backdrop-filter: blur(10px);
 }
+
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(255,126,185,0.4);
+  box-shadow: 0 8px 20px rgba(0,198,255,0.4);
 }
+
 .card img {
   max-width: 100%;
   height: 150px;
@@ -236,19 +167,20 @@ header {
 
 .card h3 {
   margin-bottom: 10px;
-  color: #ff7eb9;
+  color: #00c6ff;
 }
 
 /* ===== Contact Form ===== */
-form {
-  flex: 2;
+#contact form {
+  max-width: 600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-form input,
-form textarea {
+#contact input,
+#contact textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -256,15 +188,15 @@ form textarea {
   font-size: 1rem;
 }
 
-form input:focus,
-form textarea:focus {
-  border-color: #ff7eb9;
+#contact input:focus,
+#contact textarea:focus {
+  border-color: #00c6ff;
 }
 
-form button {
+#contact button {
   padding: 12px;
   border: none;
-  background: #ff7eb9;
+  background: #00c6ff;
   color: #111;
   font-size: 1rem;
   border-radius: 8px;
@@ -272,201 +204,22 @@ form button {
   transition: background 0.3s;
 }
 
-form button:hover {
-  background: #111;
-  color: #ff7eb9;
+#contact button:hover {
+  background: #0072ff;
+  color: #fff;
 }
 
 /* ===== Footer ===== */
 footer {
   text-align: center;
-  padding: 20px;
-  background: #111;
-  color: #fff;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 0.9rem;
 }
 
-/* ===== Animations ===== */
+/* ===== Animation ===== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* ===== Media Queries ===== */
-
-/* Mobile Devices (up to 600px) */
-@media (max-width: 600px) {
-  .nav-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .hero h2 {
-    font-size: 1.8rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-  .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  .section-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .section-img {
-    max-width: 200px;
-    margin: auto;
-  }
-  .card-list {
-    grid-template-columns: 1fr;
-  }
-  form {
-    width: 100%;
-  }
-}
-
-/* Tablets (601px to 1024px) */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .nav-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .hero h2 {
-    font-size: 2.2rem;
-  }
-  .hero p {
-    font-size: 1.1rem;
-  }
-  .profile-pic {
-    width: 140px;
-    height: 140px;
-  }
-  .section-content {
-    flex-direction: row;
-    gap: 20px;
-  }
-  .section-img {
-    max-width: 250px;
-  }
-  .card-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Laptops / Small Desktops (1025px to 1440px) */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-  .hero p {
-    font-size: 1.2rem;
-  }
-  .profile-pic {
-    width: 150px;
-    height: 150px;
-  }
-  .section-content {
-    flex-direction: row;
-  }
-  .card-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Large Desktops (1441px and above) */
-@media (min-width: 1441px) {
-  .hero h2 {
-    font-size: 3rem;
-  }
-  .hero p {
-    font-size: 1.5rem;
-  }
-  .profile-pic {
-    width: 180px;
-    height: 180px;
-  }
-  .card-list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-/* ===== Horizontal Scroll Container ===== */
-.horizontal-sections {
-  display: flex;
-  flex-direction: row;
-  width: max-content; /* Width based on content */
-  height: 100vh;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-}
-
-/* ===== Each Section Styling ===== */
-.horizontal-sections .section {
-  min-width: 100vw; /* Each section fills the viewport */
-  height: 100vh;
-  scroll-snap-align: start;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-/* Add hover or fade-in animation for each section */
-.horizontal-sections .section-content {
-  animation: fadeInHorizontal 1.2s ease-in-out;
-}
-
-/* ===== Animation ===== */
-@keyframes fadeInHorizontal {
-  0% {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ===== Scrollbar Styling ===== */
-.horizontal-sections::-webkit-scrollbar {
-  height: 8px;
-}
-
-.horizontal-sections::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-}
-
-.horizontal-sections::-webkit-scrollbar-thumb {
-  background: #ff7eb9;
-  border-radius: 10px;
-}
-
-/* ===== Responsive Media Queries ===== */
-@media (max-width: 768px) {
-  .horizontal-sections .section {
-    padding: 30px;
-  }
-  .hero h2 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1440px) {
-  .hero h2 {
-    font-size: 2.5rem;
-  }
-  .hero p {
-    font-size: 1.2rem;
-  }
-}
+```
