@@ -9,6 +9,7 @@
 body {
   line-height: 1.6;
   color: #fff;
+  background: #0f2027;
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
@@ -22,7 +23,7 @@ body {
 /* ===== Header & Navigation ===== */
 header {
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 20px;
+  padding: 10px 20px;  /* smaller padding for mobile and better fit */
   position: fixed;
   top: 0;
   left: 0;
@@ -34,18 +35,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* desktop size */
   font-weight: bold;
   color: #00c6ff;
 }
 
 nav ul {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* wrap nav links on small screens */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -59,7 +60,7 @@ nav ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1rem; /* desktop link size */
   transition: color 0.3s;
 }
 
@@ -68,20 +69,43 @@ nav ul li a:focus {
   color: #00c6ff;
 }
 
+/* ===== Mobile Header Adjustment ===== */
+@media screen and (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem; /* smaller logo */
+  }
+
+  nav ul {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  nav ul li {
+    margin-left: 10px; /* smaller spacing */
+  }
+
+  nav ul li a {
+    font-size: 0.9rem; /* smaller nav links */
+  }
+}
+
 /* ===== Section Visibility Control ===== */
 .section {
-  display: none;
+  display: none; /* All hidden by default */
   padding: 80px 0;
   min-height: 100vh;
   text-align: center;
 }
 
+/* Show only targeted section */
 .section:target {
   display: block;
   animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Show Home if no target */
+/* Show Home ONLY when no hash (#) in URL */
 body:not(:has(:target)) #home {
   display: block;
 }
@@ -100,7 +124,7 @@ body:not(:has(:target)) #home {
   line-height: 1.7;
 }
 
-/* ===== Home Section ===== */
+/* ===== Home Section (Hero) ===== */
 #home img.profile-pic {
   width: 180px;
   height: 180px;
@@ -172,12 +196,7 @@ body:not(:has(:target)) #home {
   color: #00c6ff;
 }
 
-/* ===== Contact Section ===== */
-#contact {
-  display: block; /* ensure contact always visible */
-  padding: 80px 0;
-}
-
+/* ===== Contact Form ===== */
 #contact form {
   max-width: 600px;
   margin: auto;
@@ -224,36 +243,23 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ===== Animations ===== */
+/* ===== Animation ===== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Scroll Padding ===== */
+/* ===== Fix for Mobile Section Visibility ===== */
 html {
   scroll-padding-top: 70px; /* height of fixed header */
 }
 
 /* ===== Responsive Adjustments ===== */
 @media screen and (max-width: 768px) {
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
   nav ul {
     flex-direction: column;
     gap: 15px;
     margin-top: 10px;
-  }
-
-  nav ul li {
-    margin-left: 0;
-  }
-
-  nav ul li a {
-    font-size: 0.9rem;
   }
 
   .nav-container {
@@ -263,7 +269,6 @@ html {
 
   .section {
     padding: 100px 20px 50px 20px;
-    display: block; /* show all sections on mobile */
   }
 
   #home img.profile-pic {
@@ -278,5 +283,18 @@ html {
 
   .card img {
     height: 120px;
+  }
+
+  /* ===== Mobile Header Font Adjustment ===== */
+  .logo {
+    font-size: 1.2rem; /* smaller logo font */
+  }
+
+  nav ul li a {
+    font-size: 0.9rem; /* smaller nav links */
+  }
+
+  nav ul li {
+    margin-left: 15px; /* reduce spacing */
   }
 }
