@@ -298,3 +298,25 @@ html {
     margin-left: 15px; /* reduce spacing */
   }
 }
+```css
+/* === Fix: Keep Navbar Horizontal on All Screens === */
+.nav-container,
+nav ul {
+  flex-wrap: nowrap !important;  /* stop wrapping */
+  overflow-x: auto;              /* scroll if too wide */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+}
+
+nav ul {
+  scrollbar-width: none;         /* hide scrollbar (Firefox) */
+}
+
+nav ul::-webkit-scrollbar {
+  display: none;                 /* hide scrollbar (Chrome/Safari) */
+}
+
+nav ul li a {
+  white-space: nowrap;           /* prevent text wrapping */
+}
+
+
