@@ -23,7 +23,7 @@ body {
 /* ===== Header & Navigation ===== */
 header {
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 20px;  /* smaller padding for mobile and better fit */
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -35,32 +35,35 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
+  flex-wrap: nowrap; /* always one row */
 }
 
 .logo {
-  font-size: 1.5rem; /* desktop size */
+  font-size: 1.5rem;
   font-weight: bold;
   color: #00c6ff;
 }
 
 nav ul {
   display: flex;
-  flex-wrap: wrap; /* wrap nav links on small screens */
+  flex-wrap: nowrap; /* prevent wrapping */
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 100%;                   /* take full width */
+  justify-content: space-evenly; /* spread evenly */
 }
 
 nav ul li {
-  margin-left: 25px;
+  margin-left: 10px;
+  white-space: nowrap; /* prevent line breaks */
 }
 
 nav ul li a {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
-  font-size: 1rem; /* desktop link size */
+  font-size: clamp(0.7rem, 2vw, 1rem); /* shrink on small screens */
   transition: color 0.3s;
 }
 
@@ -72,40 +75,32 @@ nav ul li a:focus {
 /* ===== Mobile Header Adjustment ===== */
 @media screen and (max-width: 768px) {
   .logo {
-    font-size: 1.2rem; /* smaller logo */
+    font-size: 1rem; /* smaller logo */
   }
 
   nav ul {
-    width: 100%;
-    justify-content: flex-start;
-    margin-top: 10px;
-    gap: 10px;
+    justify-content: space-around; /* distribute links evenly */
+    gap: 5px;
   }
 
   nav ul li {
-    margin-left: 10px; /* smaller spacing */
-  }
-
-  nav ul li a {
-    font-size: 0.9rem; /* smaller nav links */
+    margin-left: 5px; /* smaller gap */
   }
 }
 
 /* ===== Section Visibility Control ===== */
 .section {
-  display: none; /* All hidden by default */
+  display: none;
   padding: 80px 0;
   min-height: 100vh;
   text-align: center;
 }
 
-/* Show only targeted section */
 .section:target {
   display: block;
   animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Show Home ONLY when no hash (#) in URL */
 body:not(:has(:target)) #home {
   display: block;
 }
@@ -251,22 +246,11 @@ footer {
 
 /* ===== Fix for Mobile Section Visibility ===== */
 html {
-  scroll-padding-top: 70px; /* height of fixed header */
+  scroll-padding-top: 70px;
 }
 
 /* ===== Responsive Adjustments ===== */
 @media screen and (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .section {
     padding: 100px 20px 50px 20px;
   }
@@ -285,38 +269,11 @@ html {
     height: 120px;
   }
 
-  /* ===== Mobile Header Font Adjustment ===== */
   .logo {
-    font-size: 1.2rem; /* smaller logo font */
+    font-size: 1rem;
   }
 
   nav ul li a {
-    font-size: 0.9rem; /* smaller nav links */
-  }
-
-  nav ul li {
-    margin-left: 15px; /* reduce spacing */
+    font-size: clamp(0.7rem, 2vw, 0.9rem); /* auto-resize smaller */
   }
 }
-```css
-/* === Fix: Keep Navbar Horizontal on All Screens === */
-.nav-container,
-nav ul {
-  flex-wrap: nowrap !important;  /* stop wrapping */
-  overflow-x: auto;              /* scroll if too wide */
-  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
-}
-
-nav ul {
-  scrollbar-width: none;         /* hide scrollbar (Firefox) */
-}
-
-nav ul::-webkit-scrollbar {
-  display: none;                 /* hide scrollbar (Chrome/Safari) */
-}
-
-nav ul li a {
-  white-space: nowrap;           /* prevent text wrapping */
-}
-
-
