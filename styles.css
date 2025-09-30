@@ -277,3 +277,13 @@ html {
     font-size: clamp(0.7rem, 2vw, 0.9rem); /* auto-resize smaller */
   }
 }
+@media screen and (max-width: 480px) {
+  nav ul li a {
+    font-size: clamp(0.6rem, 3vw, 0.8rem); /* shrink more */
+  }
+}
+@media screen and (max-width: 480px) {
+  nav ul li a {
+    font-size: clamp(0.6rem, 3vw, 0.8rem); /* shrink more */
+  }
+}
